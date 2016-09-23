@@ -2,24 +2,33 @@
 <html>
 
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
     <title>React Tutorial</title>
-
-    <script src="build/react.js"></script>
-    <script src="build/react-dom.js"></script>
+    <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
     <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
+    <script src="https://unpkg.com/jquery@3.1.0/dist/jquery.min.js"></script>
+    <script src="https://unpkg.com/remarkable@1.6.2/dist/remarkable.min.js"></script>
   </head>
 
 
   <body>
+
     <div id="content"></div>
 
 
-    <script type="text/babel">
+    <script type="text/babel"> 
+
+        ReactDOM.render(
+            <p>
+                <i>Hello User,</i>
+                <i>Welcome to React</i>
+            </p>
+            , document.getElementById('content') )
      
     </script>
 
-    
+
   </body>
 
 
