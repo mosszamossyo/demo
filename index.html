@@ -16,15 +16,25 @@
 
     <div id="content"></div>
 
-
     <script type="text/babel"> 
 
-        ReactDOM.render(
-            <form>
-                <input placeholder='กรุณาใส่ข้อมูล'/>
-                <button>Search</button>
-            </form>    
-            , document.getElementById('content') )
+       class Welcome extends React.Component{
+            render(){
+                return <b> Hello React </b>
+            }
+       }
+
+       class Search extends React.Component{
+            render(){
+                return <div>
+                            <input placeholder='Please insert data'/>
+                            <button>Search</button>
+                            </div>
+            }
+       }
+
+       ReactDOM.render(<div><Welcome/><Search/></div> , document.getElementById('content'))
+      
      
     </script>
 
