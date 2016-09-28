@@ -21,33 +21,10 @@
  
     <script type="text/babel"> 
 
-    class Coffee extends React.Component{
-        constructor(){
-            super()
-            this.data = []
-            fetch('http://icode.run:4000/table')
-            .then( r => r.json() )
-            .then( x  => {
-                this.data = x
-                this.setState({})
-            })
-        }
-        render(){
-            var button  = []
-            for (var v of this.data){
-                button.push(<button className="btn btn-primary">
-                    {v.name} - {v.price}</button>)
-            }
-            return <div className="btn-group">{button}</div>
-        }
-    }
-
+  var data = <i>Welcome to html</i>
+  ReactDOM.remder(data,document.getElementById('content'));
       
 
-       ReactDOM.render(<Coffee /> 
-       ,document.getElementById('content'))
-      
-     
     </script>
 
 

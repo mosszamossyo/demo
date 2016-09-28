@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" >
+    
+    <link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+    crossorigin="anonymous">
+    <style>
+            input{margin-top:10px ; margin-bottom:10px;}
+        </style>
+
+   
+</head>
+<body>
+    <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
+    <script src="https://icode.run/jquery.js"></script>
+    <div class="container">
+        <h1> Hello World </h1>
+        <button class="btn btn-primary" id="refresh"> Refresh</button>
+        <div id="component">Loading...</div>  
+        <div id="component2"></div>  
+
+
+        <div class="container">
+        <div id="component3">Loading</div>
+        </div>
+
+        <div class="container">
+            <div id="component4"> Loading ...</div>
+        </div>
+           <!-- <form onsubmit="Delete(this)"> -->
+              
+              <!-- 
+                  <form>
+                    <button class="btn btn-danger" type="submit">Delete</button>
+            </form>
+            <script>
+                    $('form').submit(Delete)
+                    function Delete(){
+                        return false
+                    }
+
+                    /*
+                    function Delete(){
+                        
+                        alert('Delete')
+                    }
+                    */
+                </script>
+                -->
+
+    </div>
+    <script type="text/babel">
+        class Zip extends React.Component{
+        search(){
+            alert('Searching...')
+        }
+        render(){
+            return <div>
+            <input className="form-control" autoFocus placeholder="รหัสไปรษณีย์" /> 
+            <button onClick={ () => this.search() }
+            className="btn btn-primary">
+                Search
+            </button>
+            </div>
+            }
+        }
+
+     ReactDOM.render(<div><Zip /></div>,
+                document.getElementById('component'))
+
+            class Coffee extends React.Component {
+                render() {
+                    let item = [ ]
+                    if (this.data) {
+                        for (let v of this.data) {
+                            item.push(<li>{v}</li>)
+                        }
+                    }
+                    return <div>
+                        <button onClick={ () => this.refresh() }
+                        className='btn btn-primary'>Refresh</button>
+                        <ul>{item}</ul>
+                        </div>
+                }
+                refresh() {
+                    $.get('http://icode.run:4000/coffee')
+                    .done( data => {
+                        this.data = data
+                        this.setState({})
+                    })
+                }
+            }
+            ReactDOM.render(<Coffee></Coffee>,
+                document.getElementById('component'))
+
+
+       ReactDOM.render(<Coffee></Coffee>,
+                document.getElementById('component'))
+
+                class App extends React.Component{
+                    render(){
+                        return <form onSubmit={ e => this.delete(e) } >
+
+                            <input className="form-control" onChange={e => this.typing(e)} autoFocus 
+                            placeholder="Insert your word" />
+
+                            <button type='submit' className="btn btn-warning">
+                            Delete on React
+                            </button>
+
+                        </form>
+                    }
+                    delete(e){
+                        e.preventDefault() //รับค่า e มา เพื่อไม่ให้กดแล้วรีเฟรชหน้าต่าง 
+                    }
+                    typing(e){
+                        console.log(e.target.value) // Show ค่าที่เรากำลังพิมพ์ ที่อยู่ใน log
+                    }
+                }
+                ReactDOM.render(<App />,
+                document.getElementById('component2'))
+                
+
+                class Divider extends React.Component{
+                    render(){
+                    let item = []
+                    if(this.result){
+                        for( let i of this.result){
+                            item.push(<li>{i}</li>)
+                        }
+                    }
+                        return <div>
+                            <input className="form-control" autoFocus 
+                            placeholder="Insert your word" onChange={ e => this.typing(e) } />
+
+                            <button type='submit' className='btn btn-danger'>
+                            Search Divider</button>
+                            <ul>{item}</ul>
+                        </div>
+                    }
+                    
+                    typing(e){
+                        let v = parseInt(e.target.value)
+                        this.result=[]
+                        for(let i = 1; i <= v; i++){
+                            if(v%i == 0){
+                                this.result.push(i)
+                            }
+                        }
+                        this.setState({})
+                    }
+                }
+                ReactDOM.render(<Divider />,
+                document.getElementById('component3'))
+
+
+                class CoffeeFetch extends React.Component{
+                    render(){
+                    let item = []
+                    if(this.state && this.state.data){
+                        for(let c of this.state.data){
+                            item.push(<li>{c}</li>)
+                        }
+                    }
+                       return <div>
+                        <button onClick={ e => this.refresh(e)}>Refresh component4</button>
+                        
+                        <ol>{item}</ol>
+                        </div>
+                    }
+                    refresh(e){
+                        fetch('http://icode.run:4000/coffee')
+                        .then(r => r.json())
+                        .then(x => {
+                            this.state = { }
+                            this.state.data = x
+                            this.setState({})
+                        })
+                    }
+                }
+                ReactDOM.render(<CoffeeFetch />, document.getElementById('component4'))
+    
+    </script>
+
+        <script>
+            $.get('https://icode.run:4000/coffee').done(this.ready)
+            $('#refresh').click(refresh)
+            function refresh(){
+                alert('Refresh');
+            }
+            </script>
+    
+</body>
+</html>
