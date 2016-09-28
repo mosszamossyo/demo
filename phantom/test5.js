@@ -23,4 +23,4 @@ function ready(status){
         }
     }
     phantom.exit()
-}// run phanton ตามด้วยชื่อ file.js
+}// run phantom ตามด้วยชื่อ file.js
